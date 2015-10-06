@@ -1,0 +1,143 @@
+1. Display a list that how many tutorials are written by each user
+ db.blogs.aggregate([{$group:{_id:"$url",numtuts:{$sum:1}}}])
+{ "_id" : "www.wikipedia.com", "numtuts" : 6 }
+{ "_id" : "www.tutorialspoint.com", "numtuts" : 5 }
+
+
+2. Compute the top five urls .($sum,$sort)
+db.blogs.aggregate([{$group:{_id:"$url",numtuts:{$sum:1}}},{$sort:{numtuts:1}}])
+{ "_id" : "www.tutorialspoint.com", "numtuts" : 5 }
+{ "_id" : "www.wikipedia.com", "numtuts" : 6 }
+
+3. Return title having likes above 300.($match,$sum)
+ db.blogs.aggregate([{$group:{_id:"$title",likes:{$sum:"$likes"}}},{$match:{likes:{$gt:300}}}])
+{ "_id" : "RDBMS Overview", "likes" : 457 }
+{ "_id" : "BigTable Overview", "likes" : 550 }
+{ "_id" : "Cassandra Overview", "likes" : 400 }
+{ "_id" : "MongoDB Overview", "likes" : 304 }
+
+4. Return all 'comments' from user 'user1' .($unwind)
+db.blogs.aggregate([{$unwind:'$comments'},{$match:{"comments.user":"user1"}}]).pretty()
+{
+	"_id" : ObjectId("55d180673703129de5d460e6"),
+	"title" : "MongoDB Overview",
+	"description" : "MongoDB is NOSQL database",
+	"by" : "tutorials point",
+	"url" : "www.tutorialspoint.com",
+	"tags" : [
+		"mongodb",
+		"nosql",
+		"database"
+	],
+	"likes" : 100,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"date_created" : ISODate("2015-06-15T18:30:00Z"),
+		"like" : 0
+	}
+}
+{
+	"_id" : ObjectId("55d184b93703129de5d460e7"),
+	"title" : "MySQL Overview",
+	"description" : "MySQL is SQL database",
+	"by" : "tutorials point",
+	"url" : "www.tutorialspoint.com",
+	"tags" : [
+		"mysql",
+		"sql",
+		"database"
+	],
+	"likes" : 109,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"date_created" : ISODate("2015-06-16T18:30:00Z"),
+		"like" : 0
+	}
+}
+{
+	"_id" : ObjectId("55d185223703129de5d460e8"),
+	"title" : "Cassandra Overview",
+	"description" : "Cassandra is NoSQL database",
+	"by" : "tutorials point",
+	"url" : "www.tutorialspoint.com",
+	"tags" : [
+		"cassandra",
+		"nosql",
+		"database"
+	],
+	"likes" : 200,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"date_created" : ISODate("2015-06-18T18:30:00Z"),
+		"like" : 0
+	}
+}
+{
+	"_id" : ObjectId("55d185773703129de5d460e9"),
+	"title" : "BigTable Overview",
+	"description" : "BigTable is NoSQL database",
+	"by" : "tutorials point",
+	"url" : "www.tutorialspoint.com",
+	"tags" : [
+		"bigtable",
+		"nosql",
+		"database"
+	],
+	"likes" : 200,
+	"comments" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"date_created" : ISODate("2015-06-20T18:30:00Z"),
+		"like" : 0
+	}
+}
+
+5. Find total likes for “www.tutorialspoint.com'” only.
+ db.blogs.aggregate([{$group:{_id:"$url",likes:{$sum:"$likes"}}},{$match:{_id:"www.tutorialspoint.com"}}])
+{ "_id" : "www.tutorialspoint.com", "likes" : 816 }
+
+7. Return the Five Most Common “tags”.
+ db.blogs.aggregate([{$unwind:"$tags"},{$group:{_id:"$tags",total:{$sum:1}}},{$sort:{total:-1}},{$limit:5}]).pretty()
+{ "_id" : "database", "total" : 11 }
+{ "_id" : "nosql", "total" : 6 }
+{ "_id" : "sql", "total" : 4 }
+{ "_id" : "mongodb", "total" : 3 }
+{ "_id" : "mysql", "total" : 2 }
+
+6. Get all comments created after '2015-08-15'.
+db.blogs.aggregate([{$unwind:"$comments"},{$match:{"comments.date_created":{$gt:ISODate("2015-08-15")}}},{$project:{"Comments created after 2015-08-15":"$comments"}}]).pretty()
+{
+	"_id" : ObjectId("55d1879b3703129de5d460ee"),
+	"Comments created after 2015-08-15" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"date_created" : ISODate("2015-08-16T18:30:00Z"),
+		"like" : 0
+	}
+}
+{
+	"_id" : ObjectId("55d187e33703129de5d460ef"),
+	"Comments created after 2015-08-15" : {
+		"user" : "user1",
+		"message" : "My first comment",
+		"date_created" : ISODate("2015-08-25T18:30:00Z"),
+		"like" : 3
+	}
+}
+{
+	"_id" : ObjectId("55d187e33703129de5d460ef"),
+	"Comments created after 2015-08-15" : {
+		"user" : "user2",
+		"message" : "My second comment",
+		"date_created" : ISODate("2015-08-15T18:30:00Z"),
+		"like" : 0
+	}
+}
+
+8. Get the total count of the number of comments among all users.
+db.blogs.aggregate([{$unwind:"$comments"},{$group:{_id:"comments",Total_Comments:{$sum:1}}}]).pretty()
+{ "_id" : "comments", "Total_Comments" : 20 }
+

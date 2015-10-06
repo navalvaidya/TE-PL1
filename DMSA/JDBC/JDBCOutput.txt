@@ -1,0 +1,100 @@
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+4
+1	kavi
+2	ankush
+3	Abhishek
+4	Karan
+5	Ajay
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+1
+Enter employee id
+6
+Enter Employee Name
+harshy
+Entry Inserted
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+4
+1	kavi
+2	ankush
+3	Abhishek
+4	Karan
+5	Ajay
+6	harshy
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+2
+Enter employee id
+6
+Enter the Updated Name
+RakulK
+Entry Updated
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+4
+1	kavi
+2	ankush
+3	Abhishek
+4	Karan
+5	Ajay
+6	RakulK
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+3
+Enter employee id Whose entry is to be deleted
+6
+Entry Deleted
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+4
+1	kavi
+2	ankush
+3	Abhishek
+4	Karan
+5	Ajay
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit
+5
+Enter EmployeeId to Search
+3
+ID: 3 Name: Abhishek
+1.Insert Entry
+2.Update Entry
+3.Delete Entry
+4.Display
+5.Search
+6.Exit

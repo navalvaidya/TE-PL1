@@ -1,0 +1,205 @@
+naval@ubuntu:~/Desktop$ sudo python usb.py
+umount: /root/usbmnt1: device is busy.
+        (In some cases useful info about processes that use
+         the device is found by lsof(8) or fuser(1))
+mount: /dev/sdf1 already mounted or /root/usbmnt1 busy
+mount: according to mtab, /dev/sdd1 is already mounted on /root/usbmnt1
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :1
+total 15472
+drwxr-xr-x  2 root root   16384 Sep 14 12:34 assignment
+drwxr-xr-x  2 root root   16384 Sep  1 17:15 Duplicate Marksheet
+drwxr-xr-x  3 root root   16384 Sep 19 07:47 JMongo
+-rwxr-xr-x  1 root root    1746 Sep  8 12:55 logs.py
+-rwxr-xr-x  1 root root     434 Sep 18 12:54 mongo.py
+drwxr-xr-x  6 root root   16384 Sep 15 19:07 New folder
+drwxr-xr-x  2 root root   16384 Aug 16 12:05 SanDiskSecureAccessV2.0_
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SanDiskSecureAccessV2_win.exe
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SANDISKSECUREACCESSV2_WIN.EXE.upx_.zzz
+drwxr-xr-x  3 root root   98304 Sep 11 08:24 SanDiskSecureAccess Vault
+drwxr-xr-x 13 root root   16384 Sep 17 00:02 SE
+drwxr-xr-x  2 root root   16384 Sep 17 00:35 System Volume Information
+drwxr-xr-x 10 root root   16384 Sep 16 23:24 TE
+-rwxr-xr-x  1 root root      89 Sep 19 10:18 test1
+-rwxr-xr-x  1 root root       0 Sep 19 09:42 Untitled Document~
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :2
+Make a directory or file (d/f) :d
+Enter the name of the Directory :maked
+Directory successfully created!
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :1
+total 15488
+drwxr-xr-x  2 root root   16384 Sep 14 12:34 assignment
+drwxr-xr-x  2 root root   16384 Sep  1 17:15 Duplicate Marksheet
+drwxr-xr-x  3 root root   16384 Sep 19 07:47 JMongo
+-rwxr-xr-x  1 root root    1746 Sep  8 12:55 logs.py
+drwxr-xr-x  2 root root   16384 Sep 19 10:19 maked
+-rwxr-xr-x  1 root root     434 Sep 18 12:54 mongo.py
+drwxr-xr-x  6 root root   16384 Sep 15 19:07 New folder
+drwxr-xr-x  2 root root   16384 Aug 16 12:05 SanDiskSecureAccessV2.0_
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SanDiskSecureAccessV2_win.exe
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SANDISKSECUREACCESSV2_WIN.EXE.upx_.zzz
+drwxr-xr-x  3 root root   98304 Sep 11 08:24 SanDiskSecureAccess Vault
+drwxr-xr-x 13 root root   16384 Sep 17 00:02 SE
+drwxr-xr-x  2 root root   16384 Sep 17 00:35 System Volume Information
+drwxr-xr-x 10 root root   16384 Sep 16 23:24 TE
+-rwxr-xr-x  1 root root      89 Sep 19 10:18 test1
+-rwxr-xr-x  1 root root       0 Sep 19 09:42 Untitled Document~
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :3
+Make a directory or file (d/f) :d
+Enter the path of the directory :maked
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :1
+total 15472
+drwxr-xr-x  2 root root   16384 Sep 14 12:34 assignment
+drwxr-xr-x  2 root root   16384 Sep  1 17:15 Duplicate Marksheet
+drwxr-xr-x  3 root root   16384 Sep 19 07:47 JMongo
+-rwxr-xr-x  1 root root    1746 Sep  8 12:55 logs.py
+-rwxr-xr-x  1 root root     434 Sep 18 12:54 mongo.py
+drwxr-xr-x  6 root root   16384 Sep 15 19:07 New folder
+drwxr-xr-x  2 root root   16384 Aug 16 12:05 SanDiskSecureAccessV2.0_
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SanDiskSecureAccessV2_win.exe
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SANDISKSECUREACCESSV2_WIN.EXE.upx_.zzz
+drwxr-xr-x  3 root root   98304 Sep 11 08:24 SanDiskSecureAccess Vault
+drwxr-xr-x 13 root root   16384 Sep 17 00:02 SE
+drwxr-xr-x  2 root root   16384 Sep 17 00:35 System Volume Information
+drwxr-xr-x 10 root root   16384 Sep 16 23:24 TE
+-rwxr-xr-x  1 root root      89 Sep 19 10:18 test1
+-rwxr-xr-x  1 root root       0 Sep 19 09:42 Untitled Document~
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :4
+Enter path of file source :test1
+Enter path of destination directory :JMongo
+File successfully copied to Destinatiion directory
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :5
+Enter the path of file or directory to be renamed :test1
+Enter the path of new file or directory name :test
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :1
+total 15472
+drwxr-xr-x  2 root root   16384 Sep 14 12:34 assignment
+drwxr-xr-x  2 root root   16384 Sep  1 17:15 Duplicate Marksheet
+drwxr-xr-x  3 root root   16384 Sep 19 10:20 JMongo
+-rwxr-xr-x  1 root root    1746 Sep  8 12:55 logs.py
+-rwxr-xr-x  1 root root     434 Sep 18 12:54 mongo.py
+drwxr-xr-x  6 root root   16384 Sep 15 19:07 New folder
+drwxr-xr-x  2 root root   16384 Aug 16 12:05 SanDiskSecureAccessV2.0_
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SanDiskSecureAccessV2_win.exe
+-rwxr-xr-x  1 root root 7773176 Mar 31  2014 SANDISKSECUREACCESSV2_WIN.EXE.upx_.zzz
+drwxr-xr-x  3 root root   98304 Sep 11 08:24 SanDiskSecureAccess Vault
+drwxr-xr-x 13 root root   16384 Sep 17 00:02 SE
+drwxr-xr-x  2 root root   16384 Sep 17 00:35 System Volume Information
+drwxr-xr-x 10 root root   16384 Sep 16 23:24 TE
+-rwxr-xr-x  1 root root      89 Sep 19 10:18 test
+-rwxr-xr-x  1 root root       0 Sep 19 09:42 Untitled Document~
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :6
+opening vi editor............
+i->insert
+h,j,k,l->left,down,up,right
+dd->remove a line
+:q->quit
+:q!->quit without savingn
+:wq->wrire and quit
+Enter the path of file to open for Editing :test 
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :7
+Enter Path of file :test
+Displaying content of file
+testing1.....................
+testing2......................
+testing3...................
+
+1.List the files in USB
+2.Make 
+3.Delete 
+4.Copy files
+5.Rename a file.
+6.Modify file content.
+7.Display file content.
+8.Exit
+Enter your choice :8
+naval@ubuntu:~/Desktop$

@@ -1,0 +1,504 @@
+	"Lab" : "PL1"
+}
+{
+	"_id" : ObjectId("55b1d14d0d3946ffeef470e1"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune",
+	"Lab" : "PL1",
+	"hobbies" : [
+		"Sports",
+		"counter-strike"
+	]
+}
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+> db.st.insert({rollno:56,name:"malay",address:{local:"pune",Permanent:"Indore"}})
+WriteResult({ "nInserted" : 1 })
+> db.st.find().pretty();
+{
+	"_id" : ObjectId("55b1cf770d3946ffeef470dd"),
+	"rollno" : 88,
+	"name" : "naval"
+}
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval",
+	"address" : "Pune"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit",
+	"address" : "Camp Pune"
+}
+{
+	"_id" : ObjectId("55b1d0000d3946ffeef470e0"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune",
+	"Lab" : "PL1"
+}
+{
+	"_id" : ObjectId("55b1d14d0d3946ffeef470e1"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune",
+	"Lab" : "PL1",
+	"hobbies" : [
+		"Sports",
+		"counter-strike"
+	]
+}
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+{
+	"_id" : ObjectId("55b1d64a0d3946ffeef470e2"),
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({},{rollno:1,name:1,_id:0}).pretty();
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 36, "name" : "Ankit" }
+{ "rollno" : 85, "name" : "Harshabh" }
+{ "rollno" : 85, "name" : "Harshabh" }
+{ "rollno" : 91, "name" : "rishav" }
+{ "rollno" : 56, "name" : "malay" }
+> db.st.find({},{rollno:1,name:1}).pretty();
+{
+	"_id" : ObjectId("55b1cf770d3946ffeef470dd"),
+	"rollno" : 88,
+	"name" : "naval"
+}
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit"
+}
+{
+	"_id" : ObjectId("55b1d0000d3946ffeef470e0"),
+	"rollno" : 85,
+	"name" : "Harshabh"
+}
+{
+	"_id" : ObjectId("55b1d14d0d3946ffeef470e1"),
+	"rollno" : 85,
+	"name" : "Harshabh"
+}
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+{
+	"_id" : ObjectId("55b1d64a0d3946ffeef470e2"),
+	"rollno" : 56,
+	"name" : "malay"
+}
+> db.st.find({},{rollno:1,name:1,_id:0}).pretty();
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 36, "name" : "Ankit" }
+{ "rollno" : 85, "name" : "Harshabh" }
+{ "rollno" : 85, "name" : "Harshabh" }
+{ "rollno" : 91, "name" : "rishav" }
+{ "rollno" : 56, "name" : "malay" }
+> db.st.find({},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+{ "rollno" : 91, "name" : "rishav" }
+{
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({rollno:56},{rollno:1,name:1,_id:0,address:1}).pretty();
+{
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({rollno:85,name:"harshabh"},{rollno:1,name:1,_id:0,address:1}).pretty();
+> db.st.find({rollno:85,name:"Harshabh"},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+> db.st.find({rollno:85,rollno:88},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+> db.st.find({rollno:85,rollno:56},{rollno:1,name:1,_id:0,address:1}).pretty();
+{
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({rollno:85,rollno:88},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+> db.st.find({rollno:85,rollno:56},{rollno:1,name:0,_id:0,address:1}).pretty();
+error: {
+	"$err" : "Can't canonicalize query: BadValue Projection cannot have a mix of inclusion and exclusion.",
+	"code" : 17287
+}
+> db.st.find({rollno:85,rollno:56},{rollno:1,name:1,_id:0,address:1}).pretty();
+{
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({rollno:88,rollno:85},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+> db.st.find({},{rollno:1,name:1,_id:0,address:1}).pretty().limit(3).skip(1);
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+> db.st.find({},{rollno:1,name:1,_id:0,address:1}).pretty().limit(3);
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+> db.st.find({},{rollno:1,name:1,_id:0,address:1}).pretty().limit(3).skip(1);
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+{ "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune" }
+> db.st.find({},{rollno:1,name:1,_id:0,address:1}).pretty().limit(3);
+{ "rollno" : 88, "name" : "naval" }
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+> db.st.find({},{rollno:1,name:1,address:1}).pretty().limit(3);
+{
+	"_id" : ObjectId("55b1cf770d3946ffeef470dd"),
+	"rollno" : 88,
+	"name" : "naval"
+}
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval",
+	"address" : "Pune"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit",
+	"address" : "Camp Pune"
+}
+> db.st.find({},{rollno:1,name:1,address:1}).pretty().limit(3).skip(1);
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval",
+	"address" : "Pune"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit",
+	"address" : "Camp Pune"
+}
+{
+	"_id" : ObjectId("55b1d0000d3946ffeef470e0"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+> db.st.find({},{rollno:1,name:1,address:1}).pretty().limit(4).skip(1);
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval",
+	"address" : "Pune"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit",
+	"address" : "Camp Pune"
+}
+{
+	"_id" : ObjectId("55b1d0000d3946ffeef470e0"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+{
+	"_id" : ObjectId("55b1d14d0d3946ffeef470e1"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+> db.st.find({},{rollno:1,name:1,address:1}).pretty().limit(5).skip(1);
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval",
+	"address" : "Pune"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit",
+	"address" : "Camp Pune"
+}
+{
+	"_id" : ObjectId("55b1d0000d3946ffeef470e0"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+{
+	"_id" : ObjectId("55b1d14d0d3946ffeef470e1"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+> db.st.find({},{rollno:1,name:1,address:1}).pretty();
+{
+	"_id" : ObjectId("55b1cf770d3946ffeef470dd"),
+	"rollno" : 88,
+	"name" : "naval"
+}
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval",
+	"address" : "Pune"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit",
+	"address" : "Camp Pune"
+}
+{
+	"_id" : ObjectId("55b1d0000d3946ffeef470e0"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+{
+	"_id" : ObjectId("55b1d14d0d3946ffeef470e1"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+{
+	"_id" : ObjectId("55b1d64a0d3946ffeef470e2"),
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({},{rollno:1,name:1,address:1}).pretty().limit(5).skip(1);
+{
+	"_id" : ObjectId("55b1cfb70d3946ffeef470de"),
+	"rollno" : 88,
+	"name" : "naval",
+	"address" : "Pune"
+}
+{
+	"_id" : ObjectId("55b1cfd30d3946ffeef470df"),
+	"rollno" : 36,
+	"name" : "Ankit",
+	"address" : "Camp Pune"
+}
+{
+	"_id" : ObjectId("55b1d0000d3946ffeef470e0"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+{
+	"_id" : ObjectId("55b1d14d0d3946ffeef470e1"),
+	"rollno" : 85,
+	"name" : "Harshabh",
+	"address" : "Kothrud Pune"
+}
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+> db.st.find({rollno:85,rollno:56},{rollno:1,name:0,_id:0,address:1}).pretty();
+error: {
+	"$err" : "Can't canonicalize query: BadValue Projection cannot have a mix of inclusion and exclusion.",
+	"code" : 17287
+}
+> db.st.find({rollno:85,rollno:56},{rollno:1,name:1,_id:0,address:1}).pretty();
+{
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({rollno:85,rollno:56,rollno:36},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+> db.st.find({rollno:36},{rollno:85},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "_id" : ObjectId("55b1cfd30d3946ffeef470df"), "rollno" : 36 }
+> db.st.find({rollno:85,rollno:56,rollno:36},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+> db.st.find({rollno:85,rollno:56},{rollno:1,name:1,_id:0,address:1}).pretty();
+{
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> db.st.find({rollno:85,rollno:56},{rollno:1,name:0,_id:0,address:1}).pretty();
+error: {
+	"$err" : "Can't canonicalize query: BadValue Projection cannot have a mix of inclusion and exclusion.",
+	"code" : 17287
+}
+> db.st.find().sort({rollno:-1});
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+{ "_id" : ObjectId("55b1cf770d3946ffeef470dd"), "rollno" : 88, "name" : "naval" }
+{ "_id" : ObjectId("55b1cfb70d3946ffeef470de"), "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "_id" : ObjectId("55b1d0000d3946ffeef470e0"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1" }
+{ "_id" : ObjectId("55b1d14d0d3946ffeef470e1"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1", "hobbies" : [ "Sports", "counter-strike" ] }
+{ "_id" : ObjectId("55b1d64a0d3946ffeef470e2"), "rollno" : 56, "name" : "malay", "address" : { "local" : "pune", "Permanent" : "Indore" } }
+{ "_id" : ObjectId("55b1cfd30d3946ffeef470df"), "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+> db.st.find().sort({rollno:1});
+{ "_id" : ObjectId("55b1cfd30d3946ffeef470df"), "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+{ "_id" : ObjectId("55b1d64a0d3946ffeef470e2"), "rollno" : 56, "name" : "malay", "address" : { "local" : "pune", "Permanent" : "Indore" } }
+{ "_id" : ObjectId("55b1d0000d3946ffeef470e0"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1" }
+{ "_id" : ObjectId("55b1d14d0d3946ffeef470e1"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1", "hobbies" : [ "Sports", "counter-strike" ] }
+{ "_id" : ObjectId("55b1cf770d3946ffeef470dd"), "rollno" : 88, "name" : "naval" }
+{ "_id" : ObjectId("55b1cfb70d3946ffeef470de"), "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+> db.st.find().sort({name:1});
+{ "_id" : ObjectId("55b1cfd30d3946ffeef470df"), "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+{ "_id" : ObjectId("55b1d0000d3946ffeef470e0"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1" }
+{ "_id" : ObjectId("55b1d14d0d3946ffeef470e1"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1", "hobbies" : [ "Sports", "counter-strike" ] }
+{ "_id" : ObjectId("55b1d64a0d3946ffeef470e2"), "rollno" : 56, "name" : "malay", "address" : { "local" : "pune", "Permanent" : "Indore" } }
+{ "_id" : ObjectId("55b1cf770d3946ffeef470dd"), "rollno" : 88, "name" : "naval" }
+{ "_id" : ObjectId("55b1cfb70d3946ffeef470de"), "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+> db.st.find().sort({rollno:1,name:1});
+{ "_id" : ObjectId("55b1cfd30d3946ffeef470df"), "rollno" : 36, "name" : "Ankit", "address" : "Camp Pune" }
+{ "_id" : ObjectId("55b1d64a0d3946ffeef470e2"), "rollno" : 56, "name" : "malay", "address" : { "local" : "pune", "Permanent" : "Indore" } }
+{ "_id" : ObjectId("55b1d0000d3946ffeef470e0"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1" }
+{ "_id" : ObjectId("55b1d14d0d3946ffeef470e1"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1", "hobbies" : [ "Sports", "counter-strike" ] }
+{ "_id" : ObjectId("55b1cf770d3946ffeef470dd"), "rollno" : 88, "name" : "naval" }
+{ "_id" : ObjectId("55b1cfb70d3946ffeef470de"), "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+> db.st.find({rollno:($gt:50)});
+2015-07-24T11:57:59.173+0530 SyntaxError: Unexpected token :
+> db.st.find({rollno:{$gt:50}});
+{ "_id" : ObjectId("55b1cf770d3946ffeef470dd"), "rollno" : 88, "name" : "naval" }
+{ "_id" : ObjectId("55b1cfb70d3946ffeef470de"), "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "_id" : ObjectId("55b1d0000d3946ffeef470e0"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1" }
+{ "_id" : ObjectId("55b1d14d0d3946ffeef470e1"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1", "hobbies" : [ "Sports", "counter-strike" ] }
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+{ "_id" : ObjectId("55b1d64a0d3946ffeef470e2"), "rollno" : 56, "name" : "malay", "address" : { "local" : "pune", "Permanent" : "Indore" } }
+> db.st.count({rollno:{$gt:50}});
+6
+> db.st.find({rollno:{$gt:50}});
+{ "_id" : ObjectId("55b1cf770d3946ffeef470dd"), "rollno" : 88, "name" : "naval" }
+{ "_id" : ObjectId("55b1cfb70d3946ffeef470de"), "rollno" : 88, "name" : "naval", "address" : "Pune" }
+{ "_id" : ObjectId("55b1d0000d3946ffeef470e0"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1" }
+{ "_id" : ObjectId("55b1d14d0d3946ffeef470e1"), "rollno" : 85, "name" : "Harshabh", "address" : "Kothrud Pune", "Lab" : "PL1", "hobbies" : [ "Sports", "counter-strike" ] }
+{ "_id" : 1234, "rollno" : 91, "name" : "rishav" }
+{ "_id" : ObjectId("55b1d64a0d3946ffeef470e2"), "rollno" : 56, "name" : "malay", "address" : { "local" : "pune", "Permanent" : "Indore" } }
+> db.st.find({rollno:{$gt:50}}).count();
+6
+> db.st.find().count();
+7
+> db.st.find({address:"pune"},{rollno:1,name:1,_id:0,address:1}).pretty();
+> db.st.find({address:"Pune"},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+> db.st.find({address:%"Pune"%},{rollno:1,name:1,_id:0,address:1}).pretty();
+2015-07-24T12:03:09.898+0530 SyntaxError: Unexpected token %
+> db.st.find({address:"Pune"%},{rollno:1,name:1,_id:0,address:1}).pretty();
+2015-07-24T12:03:18.042+0530 SyntaxError: Unexpected token }
+> db.st.find({address:"Pune"},{rollno:1,name:1,_id:0,address:1}).pretty();
+{ "rollno" : 88, "name" : "naval", "address" : "Pune" }
+> db.st.find({"address.city":"Pune"},{rollno:1,name:1,_id:0,address:1}).pretty();
+> db.st.find({"address.local":"Pune"},{rollno:1,name:1,_id:0,address:1}).pretty();
+> db.st.find({address.local:"Pune"},{rollno:1,name:1,_id:0,address:1}).pretty();
+2015-07-24T12:05:07.682+0530 SyntaxError: Unexpected token .
+> db.st.find({"address.local":"pune"}).pretty();
+{
+	"_id" : ObjectId("55b1d64a0d3946ffeef470e2"),
+	"rollno" : 56,
+	"name" : "malay",
+	"address" : {
+		"local" : "pune",
+		"Permanent" : "Indore"
+	}
+}
+> create dbs institution;
+2015-07-24T12:12:30.184+0530 SyntaxError: Unexpected identifier
+> create dbs institution
+2015-07-24T12:12:32.192+0530 SyntaxError: Unexpected identifier
+> use institution
+switched to db institution
+> show dbs
+DB_NAME    0.953GB
+DB_NAME1   0.078GB
+ImageData  0.078GB
+admin      0.078GB
+imagedb    0.203GB
+local      0.078GB
+mytest     0.078GB
+post       0.078GB
+student    0.078GB
+test       0.078GB
+test1      3.952GB
+test10     1.953GB
+test2      0.453GB
+test5      3.952GB
+test9      0.078GB
+> create db institution
+2015-07-24T12:13:08.312+0530 SyntaxError: Unexpected identifier
+> use institution
+switched to db institution
+> db.student.insert({_id:1,name:"naval",branch:"kothrud",address:{area:"kothrud",city:"pune",pincode:411038},subject:[{subject1:"physics",score:80},{subject2:"maths",score:82}]})
+WriteResult({ "nInserted" : 1 })
+> db.student.find();
+{ "_id" : 1, "name" : "naval", "branch" : "kothrud", "address" : { "area" : "kothrud", "city" : "pune", "pincode" : 411038 }, "subject" : [ { "subject1" : "physics", "score" : 80 }, { "subject2" : "maths", "score" : 82 } ] }
+> db.student.find().pretty();
+{
+	"_id" : 1,
+	"name" : "naval",
+	"branch" : "kothrud",
+	"address" : {
+		"area" : "kothrud",
+		"city" : "pune",
+		"pincode" : 411038
+	},
+	"subject" : [
+		{
+			"subject1" : "physics",
+			"score" : 80
+		},
+		{
+			"subject2" : "maths",
+			"score" : 82
+		}
+	]
+}
+> 
+

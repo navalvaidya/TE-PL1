@@ -1,0 +1,282 @@
+Executing SQL Queries Exercises
+
+1)List full details of all hotels.
+mysql> select * from hotel;
++---------+------------+--------+
+| hotelno | name       | city   |
++---------+------------+--------+
+|       1 | Taj        | Mumbai |
+|       2 | LeMeridian | Pune   |
+|       3 | Taj        | Pune   |
+|       4 | Oberoi     | Mumbai |
++---------+------------+--------+
+4 rows in set (0.00 sec)
+
+2)List full details of all hotels in Mumbai.
+mysql> select * from hotel where city='Mumbai';
++---------+--------+--------+
+| hotelno | name   | city   |
++---------+--------+--------+
+|       1 | Taj    | Mumbai |
+|       4 | Oberoi | Mumbai |
++---------+--------+--------+
+2 rows in set (0.00 sec)
+
+3)List the names and addresses of all guests in Newyork, alphabetically ordered by name.
+mysql> select guestname,guestaddress from guest  where guestaddress regexp 'newyork' order by guestname;
++-----------+--------------+
+| guestname | guestaddress |
++-----------+--------------+
+| Kim       | Newyork      |
++-----------+--------------+
+1 row in set (0.14 sec)
+
+4)List all AC or Non AC rooms with a price below 6000 per night, in ascending order of price.
+mysql> select * from room where  (type='Suite' or type='Deluxe') and price<7000 order by price;
++--------+---------+--------+-------+
+| roomno | hotelno | type   | price |
++--------+---------+--------+-------+
+|    103 |       1 | Suite  |  5000 |
+|    444 |       1 | Deluxe |  6000 |
+|    709 |       2 | Suite  |  6000 |
+|    209 |       2 | Deluxe |  6500 |
+|    208 |       4 | Deluxe |  6500 |
++--------+---------+--------+-------+
+5 rows in set (0.05 sec)
+
+
+Aggregate Functions
+
+1)How many hotels are there?
+mysql> select count(hotelno) as 'No. of Hotles' from hotel;
++---------------+
+| No. of Hotles |
++---------------+
+|             4 |
++---------------+
+1 row in set (0.00 sec)
+
+2)What is the average price of a room?
+mysql> select avg(price) as 'Average Price' from room;
++---------------+
+| Average Price |
++---------------+
+|     6050.0000 |
++---------------+
+1 row in set (0.03 sec)
+
+3)What is the total revenue per night from all 'suite' rooms?
+mysql> select sum(price) as 'Total Revenue' from room where type='Suite';
++---------------+
+| Total Revenue |
++---------------+
+|         26000 |
++---------------+
+1 row in set (0.00 sec)
+
+4)How many different guests have made bookings for July?
+mysql> select count(distinct guestno) as 'Different Bookings' from booking where month(dateto)='07';
++--------------------+
+| Different Bookings |
++--------------------+
+|                  3 |
++--------------------+
+1 row in set (0.00 sec)
+
+
+
+Subquries and Joins
+
+1)List the price and type of all rooms at the taj hotel
+mysql> select name,type,price from hotel,room where name='taj' and hotel.hotelno=room.hotelno;
++------+--------+-------+
+| name | type   | price |
++------+--------+-------+
+| Taj  | Suite  |  5000 |
+| Taj  | Deluxe |  6000 |
+| Taj  | AC     |  4000 |
+| Taj  | Deluxe |  7000 |
+| Taj  | Suite  |  7000 |
++------+--------+-------+
+5 rows in set (0.06 sec)
+
+2)List of guest currently staying at Taj hotel
+mysql>  select hotel.name,guest.guestname, guest.guestno from hotel,guest,booking where booking.guestno=guest.guestno and hotel.name='taj' and hotel.hotelno=booking.hotelno and current_date between booking.datefrom and booking.dateto;
++------+-----------+---------+
+| name | guestname | guestno |
++------+-----------+---------+
+| Taj  | carl      |     799 |
++------+-----------+---------+
+1 row in set (0.00 sec)
+
+3)List the details of all rooms at LeMeridian hotel,including name of guest staying in the room,if room is occupied
+mysql> select room.type,room.price,room.roomno,guest.guestname,guest.guestno from room,guest,hotel,booking where hotel.name='LeMeridian ' and booking.roomno=room.roomno and room.hotelno=booking.hotelno and booking.guestno=guest.guestno and booking.hotelno=hotel.hotelno and current_date between booking.datefrom and booking.dateto;
++--------+-------+--------+-----------+---------+
+| type   | price | roomno | guestname | guestno |
++--------+-------+--------+-----------+---------+
+| Suite  |  6000 |    709 | Kim       |     235 |
+| Deluxe |  6500 |    209 | Tim       |     788 |
++--------+-------+--------+-----------+---------+
+2 rows in set (0.00 sec)
+
+4)Total income from booking for the oberoi hotel
+mysql> select hotel.name,sum(room.price) as 'Income' from room,booking,hotel where room.hotelno=booking.hotelno and booking.roomno=room.roomno and hotel.name='oberoi' and current_date between booking.datefrom and booking.dateto;
++--------+--------+
+| name   | Income |
++--------+--------+
+| Oberoi |  19500 |
++--------+--------+
+1 row in set (0.02 sec)
+
+5)Rooms that are currently un occupied 
+mysql> select room.* from room,booking where current_date not between booking.datefrom and booking.dateto and room.hotelno=booking.hotelno and room.roomno=booking.roomno;
++--------+---------+--------+-------+
+| roomno | hotelno | type   | price |
++--------+---------+--------+-------+
+|    444 |       1 | Deluxe |  6000 |
+|    206 |       3 | Deluxe |  7000 |
+|    404 |       4 | AC     |  4500 |
+|    208 |       4 | Deluxe |  6500 |
++--------+---------+--------+-------+
+4 rows in set (0.00 sec)
+
+6)Lost income from un occupied room
+mysql> select booking.hotelno,sum(room.price) as 'Lost Income' from room,booking where current_date not between booking.datefrom and booking.dateto and room.hotelno=booking.hotelno and room.roomno=booking.roomno;
++---------+-------------+
+| hotelno | Lost Income |
++---------+-------------+
+|       1 |       24000 |
++---------+-------------+
+1 row in set (0.00 sec)
+
+
+Grouping
+
+1)List no. of rooms in each hotel
+mysql> select count(room.roomno) as 'No. of Rooms',room.hotelno,hotel.name from room,hotel where hotel.hotelno=room.hotelno group by room.hotelno;
++--------------+---------+------------+
+| No. of Rooms | hotelno | name       |
++--------------+---------+------------+
+|            3 |       1 | Taj        |
+|            2 |       2 | LeMeridian |
+|            2 |       3 | Taj        |
+|            3 |       4 | Oberoi     |
++--------------+---------+------------+
+4 rows in set (0.03 sec)
+
+2)List the number of rooms in each hotel in Mumbai
+mysql> select count(room.roomno) as 'No. of Rooms',room.hotelno,hotel.name,hotel.city from room,hotel where hotel.hotelno=room.hotelno and hotel.city='mumbai' group by room.hotelno;
++--------------+---------+--------+--------+
+| No. of Rooms | hotelno | name   | city   |
++--------------+---------+--------+--------+
+|            3 |       1 | Taj    | Mumbai |
+|            3 |       4 | Oberoi | Mumbai |
++--------------+---------+--------+--------+
+2 rows in set (0.00 sec)
+
+3)
+mysql> select hotel.name,hotel.hotelno,count(booking.hotelno) as 'No. of Bookings' from booking,hotel where booking.hotelno=hotel.hotelno group by hotelno;
++------------+---------+-----------------+
+| name       | hotelno | No. of Bookings |
++------------+---------+-----------------+
+| Taj        |       1 |               1 |
+| LeMeridian |       2 |               2 |
+| Taj        |       3 |               2 |
+| Oberoi     |       4 |               2 |
++------------+---------+-----------------+
+4 rows in set (0.02 sec)
+
+4)What is the most commonly booked room type for each hotel in Mumbai?
+mysql> select x.hotelno,x.type,max(x.count) as 'Total Rooms' from(select room.hotelno,room.type,count(room.type) as count from room,booking,hotel where hotel.hotelno=room.hotelno and booking.roomno=room.roomno and booking.hotelno=room.hotelno and  hotel.city='Mumbai' group by room.hotelno,type) as x group by hotelno;
++---------+--------+-------------+
+| hotelno | type   | Total Rooms |
++---------+--------+-------------+
+|       1 | Deluxe |           1 |
+|       4 | AC     |           1 |
++---------+--------+-------------+
+2 rows in set (0.00 sec)
+
+5)lost income from unoccupied rooms at each hotel today
+mysql> select booking.hotelno,sum(room.price) as 'Lost Income' from room,booking where current_date not between booking.datefrom and booking.dateto and room.hotelno=booking.hotelno and room.roomno=booking.roomno group by room.hotelno;
++---------+-------------+
+| hotelno | Lost Income |
++---------+-------------+
+|       1 |        6000 |
+|       3 |        7000 |
+|       4 |       11000 |
++---------+-------------+
+3 rows in set (0.00 sec)
+
+mysql> create view view2 as select * from room where hotelno in (select hotelno from hotel where name='Taj');
+Query OK, 0 rows affected (2.34 sec)
+
+mysql> select * from view2;
++--------+---------+--------+-------+
+| roomno | hotelno | type   | price |
++--------+---------+--------+-------+
+|    103 |       1 | Suite  |  5000 |
+|    444 |       1 | Deluxe |  6000 |
+|    462 |       1 | AC     |  4000 |
+|    206 |       3 | Deluxe |  7000 |
+|    507 |       3 | Suite  |  7000 |
++--------+---------+--------+-------+
+5 rows in set (0.03 sec)
+
+Index:
+mysql> create index cityindex on hotel(city);
+Query OK, 0 rows affected (1.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> explain select * from hotel where city='Mumbai';
++----+-------------+-------+------+---------------+-----------+---------+-------+------+-------------+
+| id | select_type | table | type | possible_keys | key       | key_len | ref   | rows | Extra       |
++----+-------------+-------+------+---------------+-----------+---------+-------+------+-------------+
+|  1 | SIMPLE      | hotel | ref  | cityindex     | cityindex | 12      | const |    2 | Using where |
++----+-------------+-------+------+---------------+-----------+---------+-------+------+-------------+
+1 row in set (0.26 sec)
+
+Creating and Populating Tables With Data
+
+ Update the price of all rooms by 5%.
+
+mysql> update room set price=price*1.05;
+Query OK, 10 rows affected (0.23 sec)
+Rows matched: 10  Changed: 10  Warnings: 0
+
+mysql> select * from room;
++--------+---------+--------+-------+
+| roomno | hotelno | type   | price |
++--------+---------+--------+-------+
+|    103 |       1 | Suite  |  5250 |
+|    444 |       1 | Deluxe |  6300 |
+|    462 |       1 | AC     |  4200 |
+|    209 |       2 | Deluxe |  6825 |
+|    709 |       2 | Suite  |  6300 |
+|    206 |       3 | Deluxe |  7350 |
+|    507 |       3 | Suite  |  7350 |
+|    208 |       4 | Deluxe |  6825 |
+|    321 |       4 | Suite  |  8400 |
+|    404 |       4 | AC     |  4725 |
++--------+---------+--------+-------+
+10 rows in set (0.00 sec)
+
+Create a separate table with the same structure as the Booking table to hold archive records. Using the INSERT statement, copy the records from the Booking table to the archive table relating to bookings before 1st January 2008. Delete all bookings before 1st January 2008 from the Booking table.
+
+mysql> create view booking2 as select * from booking where datefrom>='2015-07-02';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from booking2;
++---------+---------+------------+------------+--------+
+| hotelno | guestno | datefrom   | dateto     | roomno |
++---------+---------+------------+------------+--------+
+|       1 |     389 | 2015-08-24 | 2015-08-28 |    444 |
+|       2 |     235 | 2015-07-19 | 2015-08-24 |    709 |
+|       2 |     788 | 2015-07-20 | 2015-07-22 |    209 |
+|       3 |     748 | 2015-08-16 | 2015-08-18 |    206 |
+|       3 |     799 | 2015-07-21 | 2015-07-23 |    507 |
+|       4 |     746 | 2015-08-14 | 2015-08-18 |    404 |
+|       4 |     786 | 2015-07-24 | 2015-07-28 |    208 |
++---------+---------+------------+------------+--------+
+7 rows in set (0.02 sec)
+
+

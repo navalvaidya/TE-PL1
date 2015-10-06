@@ -1,0 +1,88 @@
+Connection to DB successful
+Collection student selected successfully
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+2
+{ "_id" : { "$oid" : "5605a247e4b0c26a46100076"} , "Name" : "RDJ" , "Subject" : "pl1" , "college" : "MIT" , "Branch" : "Computer"}
+{ "_id" : { "$oid" : "5605a522e4b0d72756549ae6"} , "Name" : "Peter" , "Subject" : "PL2" , "college" : "MIT" , "Branch" : "COmputer"}
+{ "_id" : { "$oid" : "5605a54ee4b0d72756549ae7"} , "Name" : "Ron" , "Subject" : "Thermodynamics" , "college" : "MIT" , "Branch" : "Civil"}
+{ "_id" : { "$oid" : "5605a571e4b0d72756549ae8"} , "Name" : "Kate" , "Subject" : "PL1" , "college" : "MIT" , "Branch" : "IT"}
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+1
+Enter name: Steve
+Enter Subject: Pl1
+Enter College: MIT
+Enter Branch: Computer
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+2
+{ "_id" : { "$oid" : "5605a247e4b0c26a46100076"} , "Name" : "RDJ" , "Subject" : "pl1" , "college" : "MIT" , "Branch" : "Computer"}
+{ "_id" : { "$oid" : "5605a522e4b0d72756549ae6"} , "Name" : "Peter" , "Subject" : "PL2" , "college" : "MIT" , "Branch" : "COmputer"}
+{ "_id" : { "$oid" : "5605a54ee4b0d72756549ae7"} , "Name" : "Ron" , "Subject" : "Thermodynamics" , "college" : "MIT" , "Branch" : "Civil"}
+{ "_id" : { "$oid" : "5605a571e4b0d72756549ae8"} , "Name" : "Kate" , "Subject" : "PL1" , "college" : "MIT" , "Branch" : "IT"}
+{ "_id" : { "$oid" : "5605a5cfe4b08a35c8afef93"} , "Name" : "Steve" , "Subject" : "Pl1" , "college" : "MIT" , "Branch" : "Computer"}
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+3
+Enter the name Whose document is to be updated :
+Steve
+Enter Updated name: Steve
+Enter Updated Subject: PL2
+Enter Updated College: MIT
+Enter Updated Branch: IT
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+2
+{ "_id" : { "$oid" : "5605a247e4b0c26a46100076"} , "Name" : "RDJ" , "Subject" : "pl1" , "college" : "MIT" , "Branch" : "Computer"}
+{ "_id" : { "$oid" : "5605a522e4b0d72756549ae6"} , "Name" : "Peter" , "Subject" : "PL2" , "college" : "MIT" , "Branch" : "COmputer"}
+{ "_id" : { "$oid" : "5605a54ee4b0d72756549ae7"} , "Name" : "Ron" , "Subject" : "Thermodynamics" , "college" : "MIT" , "Branch" : "Civil"}
+{ "_id" : { "$oid" : "5605a571e4b0d72756549ae8"} , "Name" : "Kate" , "Subject" : "PL1" , "college" : "MIT" , "Branch" : "IT"}
+{ "_id" : { "$oid" : "5605a5cfe4b08a35c8afef93"} , "Name" : "Steve" , "Subject" : "PL2" , "college" : "MIT" , "Branch" : "IT"}
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+4
+Enter the name Whose document is to be deleted :
+Steve
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+2
+{ "_id" : { "$oid" : "5605a247e4b0c26a46100076"} , "Name" : "RDJ" , "Subject" : "pl1" , "college" : "MIT" , "Branch" : "Computer"}
+{ "_id" : { "$oid" : "5605a522e4b0d72756549ae6"} , "Name" : "Peter" , "Subject" : "PL2" , "college" : "MIT" , "Branch" : "COmputer"}
+{ "_id" : { "$oid" : "5605a54ee4b0d72756549ae7"} , "Name" : "Ron" , "Subject" : "Thermodynamics" , "college" : "MIT" , "Branch" : "Civil"}
+{ "_id" : { "$oid" : "5605a571e4b0d72756549ae8"} , "Name" : "Kate" , "Subject" : "PL1" , "college" : "MIT" , "Branch" : "IT"}
+1.Insert
+2.Display
+3.Update
+4.Delete
+5.Exit
+Enter your choice
+5

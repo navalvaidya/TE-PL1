@@ -1,0 +1,6 @@
+Parent Process read data from pipe
+TestingPipe
+Child Process data written to pipe
+Reverse String: epiPgnitseT
+Parent Process writing Data
+epiPgnitseT

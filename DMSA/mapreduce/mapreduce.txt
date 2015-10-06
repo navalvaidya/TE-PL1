@@ -1,0 +1,182 @@
+MAPREDUCE :
+
+1.Get the count of Males and Females
+
+> mapper=function(){ emit(this.gender,1); };
+function (){ emit(this.gender,1); }
+
+> reducer=function(gender,count){ return Array.sum(count); };
+function (gender,count){ return Array.sum(count); }
+
+> db.mp.mapReduce(mapper,reducer,{out:"outputmap"});
+{
+	"result" : "outputmap",
+	"timeMillis" : 21,
+	"counts" : {
+		"input" : 5,
+		"emit" : 5,
+		"reduce" : 2,
+		"output" : 2
+	},
+	"ok" : 1,
+}
+> db.outputmap.find()
+{ "_id" : "female", "value" : 3 }
+{ "_id" : "male", "value" : 2 }
+
+2.Get number of hobbies of each user:
+
+> map=function(){
+... for(var i=0;i<this.hobbies.length;i++){
+... var key=this.hobbies[i];
+... var value=1;
+... emit(key,value);
+... }
+... 
+... }
+function (){
+for(var i=0;i<this.hobbies.length;i++){
+var key=this.hobbies[i];
+var value=1;
+emit(key,value);
+}
+
+}
+> red=function(hobbies,count){
+... return Array.sum(count);
+... };
+function (hobbies,count){
+return Array.sum(count);
+}
+> db.mp.mapReduce(map,red,{out:"outmp"});
+{
+	"result" : "outmp",
+	"timeMillis" : 5,
+	"counts" : {
+		"input" : 5,
+		"emit" : 15,
+		"reduce" : 3,
+		"output" : 3
+	},
+	"ok" : 1,
+}
+> db.outmp.find().pretty()
+{ "_id" : "music", "value" : 5 }
+{ "_id" : "reading", "value" : 5 }
+{ "_id" : "sleeping", "value" : 5 }
+
+3.Display No Of Cities in each state
+> map = function() {
+... emit (this.state,1)
+... };
+function () {
+emit (this.state,1)
+}
+> red = function(state,count){
+... return Array.sum(count)
+... };
+function (state,count){
+return Array.sum(count)
+}
+> db.zips.mapReduce(map,red,{out:"eg1"})
+{
+	"result" : "eg1",
+	"timeMillis" : 282,
+	"counts" : {
+		"input" : 29353,
+		"emit" : 29353,
+		"reduce" : 346,
+		"output" : 51
+	},
+	"ok" : 1,
+}
+> db.eg1.find().pretty()
+{ "_id" : "AK", "value" : 195 }
+{ "_id" : "AL", "value" : 567 }
+{ "_id" : "AR", "value" : 578 }
+{ "_id" : "AZ", "value" : 270 }
+
+4.Statewise population
+> mapping = function () {
+... emit(this.state,this.pop)
+... };
+function () {
+emit(this.state,this.pop)
+}
+> reducing = function(state , pop){
+... return Array.sum(pop)
+... };
+function (state , pop){
+return Array.sum(pop)
+}
+> db.zips.mapReduce(mapping,reducing,{out:"total"})
+{
+	"result" : "total",
+	"timeMillis" : 313,
+	"counts" : {
+		"input" : 29353,
+		"emit" : 29353,
+		"reduce" : 346,
+		"output" : 51
+	},
+	"ok" : 1,
+}
+> db.eg3.find()
+{ "_id" : "AK", "value" : 544698 }
+{ "_id" : "AL", "value" : 4040587 }
+{ "_id" : "AR", "value" : 2350725 }
+{ "_id" : "AZ", "value" : 3665228 }
+
+5.No of URLs by each site
+> map2 = function() { emit (this.url,1) }
+function () { emit (this.url,1) }
+> reducer2 = function(url,cnt) { return Array.sum(cnt) }
+function (url,cnt) { return Array.sum(cnt) }
+> db.site.mapReduce(map2,reducer2,{out:"ok1"})
+{
+	"result" : "ok1",
+	"timeMillis" : 204,
+	"counts" : {
+		"input" : 13,
+		"emit" : 13,
+		"reduce" : 3,
+		"output" : 5
+	},
+	"ok" : 1
+}
+> db.ok1.find().pretty()
+{ "_id" : null, "value" : 1 }
+{ "_id" : "//http:stupidsid.co.in", "value" : 1 }
+{ "_id" : "http://www.foodkhazana.org", "value" : 4 }
+{ "_id" : "http://www.stupidsid.co.in", "value" : 3 }
+{ "_id" : "http://www.tutorialspoint.com", "value" : 4 }
+
+QUERY BASED :
+> map3 = function() {
+... emit(this.url,1)
+... }
+function () {
+emit(this.url,1)
+}
+> red3 = function(url,cnt){
+... return Array.sum(cnt)
+... }
+function (url,cnt){
+return Array.sum(cnt)
+}
+> res = db.site.mapReduce(map3,red3,{query:{url:"http://www.tutorialspoint.com"},out:"ex"})
+{
+	"result" : "ex",
+	"timeMillis" : 3,
+	"counts" : {
+		"input" : 4,
+		"emit" : 4,
+		"reduce" : 1,
+		"output" : 1
+	},
+	"ok" : 1
+}
+> db[res.result].find()
+{ "_id" : "http://www.tutorialspoint.com", "value" : 4 }
+
+

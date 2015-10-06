@@ -1,0 +1,119 @@
+naval@ubuntu:~/Desktop$ python mongo.py
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :1
+
+Name of Databases
+[u'test', u'local']
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :2
+
+Name of Collections:
+[u'system.indexes', u'student', u'sourcedata']
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :3
+
+Printing data of student collection:
+{u'_id': ObjectId('55fd8bdf6566de100f097d43'), u'id': 1.0, u'name': u'naval'}
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :4
+enter id :2
+enter name :Sam
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :4
+enter id :3
+enter name :Kim
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :3
+
+Printing data of student collection:
+{u'_id': ObjectId('55fd8bdf6566de100f097d43'), u'id': 1.0, u'name': u'naval'}
+{u'_id': ObjectId('560c443e1d41c80b0b085665'), u'id': u'2', u'name': u'Sam'}
+{u'_id': ObjectId('560c44491d41c80b0b085666'), u'id': u'3', u'name': u'Kim'}
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :5
+Enter the id whose document is to be deleted :3
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :3
+
+Printing data of student collection:
+{u'_id': ObjectId('55fd8bdf6566de100f097d43'), u'id': 1.0, u'name': u'naval'}
+{u'_id': ObjectId('560c443e1d41c80b0b085665'), u'id': u'2', u'name': u'Sam'}
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :6
+Enter the id whose document is to be updated :2
+Enter updated name of given id :sameer
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :3
+
+Printing data of student collection:
+{u'_id': ObjectId('55fd8bdf6566de100f097d43'), u'id': 1.0, u'name': u'naval'}
+{u'_id': ObjectId('560c443e1d41c80b0b085665'), u'name': u'sameer'}
+1.View Databases
+2.View Collection
+3.view documents of collection student
+4.Insert Into collection student
+5.Delete from 	collection student by id
+6.Update collection student
+7.Exit
+Enter your choice :7
+naval@ubuntu:~/Desktop$ 

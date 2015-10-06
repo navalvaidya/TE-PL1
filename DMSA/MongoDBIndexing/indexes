@@ -1,0 +1,159 @@
+ Display all states having population above 1600.
+
+ db.post.find({pop:{$gt:16000}},{state:1}).explain();
+{
+	"cursor" : "BasicCursor",
+	"isMultiKey" : false,
+	"n" : 5474,
+	"nscannedObjects" : 29353,
+	"nscanned" : 29353,
+	"nscannedObjectsAllPlans" : 29353,
+	"nscannedAllPlans" : 29353,
+	"scanAndOrder" : false,
+	"indexOnly" : false,
+	"nYields" : 229,
+	"nChunkSkips" : 0,
+	"millis" : 20,
+	"server" : "B4L0106:27017",
+	"filterSet" : false
+}
+> 
+
+ Display all cities having population above 1600.
+
+ db.post.find({pop:{$gt:16000}},{city:1}).explain();
+{
+	"cursor" : "BasicCursor",
+	"isMultiKey" : false,
+	"n" : 5474,
+	"nscannedObjects" : 29353,
+	"nscanned" : 29353,
+	"nscannedObjectsAllPlans" : 29353,
+	"nscannedAllPlans" : 29353,
+	"scanAndOrder" : false,
+	"indexOnly" : false,
+	"nYields" : 229,
+	"nChunkSkips" : 0,
+	"millis" : 16,
+	"server" : "B4L0106:27017",
+	"filterSet" : false
+}
+
+4. Display all cities in state “KS”.
+
+ db.post.find({"state":"KS"},{city:1}).explain();
+{
+	"cursor" : "BasicCursor",
+	"isMultiKey" : false,
+	"n" : 715,
+	"nscannedObjects" : 29353,
+	"nscanned" : 29353,
+	"nscannedObjectsAllPlans" : 29353,
+	"nscannedAllPlans" : 29353,
+	"scanAndOrder" : false,
+	"indexOnly" : false,
+	"nYields" : 229,
+	"nChunkSkips" : 0,
+	"millis" : 20,
+	"server" : "B4L0106:27017",
+	"filterSet" : false
+}
+
+5. Display location of city "TIMKEN"
+ db.post.find({"city":"TIMKEN"},{"loc":1}).explain();
+{
+	"cursor" : "BasicCursor",
+	"isMultiKey" : false,
+	"n" : 1,
+	"nscannedObjects" : 29353,
+	"nscanned" : 29353,
+	"nscannedObjectsAllPlans" : 29353,
+	"nscannedAllPlans" : 29353,
+	"scanAndOrder" : false,
+	"indexOnly" : false,
+	"nYields" : 229,
+	"nChunkSkips" : 0,
+	"millis" : 18,
+	"server" : "B4L0106:27017",
+	"filterSet" : false
+}
+> 
+---------------------------------------------------------------------
+create index
+ db.post.ensureIndex({pop:1});
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 1,
+	"numIndexesAfter" : 2,
+	"ok" : 1
+}
+> 
+
+Drop index
+db.post.dropIndex({pop:1});
+{ "nIndexesWas" : 2, "ok" : 1 }
+> 
+
+Hint:
+
+> db.post.ensureIndex({state:1});
+{
+	"createdCollectionAutomatically" : false,
+	"numIndexesBefore" : 2,
+	"numIndexesAfter" : 3,
+	"ok" : 1
+}
+> db.post.find({pop:{$gt:16000}},{city:1}).hint({state:1});
+{ "_id" : "99504", "city" : "ANCHORAGE" }
+{ "_id" : "99507", "city" : "ANCHORAGE" }
+{ "_id" : "99508", "city" : "ANCHORAGE" }
+{ "_id" : "99515", "city" : "ANCHORAGE" }
+{ "_id" : "99516", "city" : "ANCHORAGE" }
+{ "_id" : "99577", "city" : "EAGLE RIVER" }
+{ "_id" : "99701", "city" : "COLDFOOT" }
+{ "_id" : "99709", "city" : "FAIRBANKS" }
+{ "_id" : "99801", "city" : "JUNEAU" }
+{ "_id" : "35010", "city" : "NEW SITE" }
+{ "_id" : "35020", "city" : "BESSEMER" }
+{ "_id" : "35023", "city" : "HUEYTOWN" }
+{ "_id" : "35055", "city" : "CULLMAN" }
+{ "_id" : "35071", "city" : "GARDENDALE" }
+{ "_id" : "35125", "city" : "PELL CITY" }
+{ "_id" : "35126", "city" : "DIXIANA" }
+{ "_id" : "35150", "city" : "SYLACAUGA" }
+{ "_id" : "35160", "city" : "TALLADEGA" }
+{ "_id" : "35204", "city" : "BIRMINGHAM" }
+{ "_id" : "35205", "city" : "BIRMINGHAM" }
+Type "it" for more
+> db.post.find({pop:{$gt:16000}},{city:1}).hint({state:1}).explain();
+{
+	"cursor" : "BtreeCursor state_1",
+	"isMultiKey" : false,
+	"n" : 5474,
+	"nscannedObjects" : 29353,
+	"nscanned" : 29353,
+	"nscannedObjectsAllPlans" : 29353,
+	"nscannedAllPlans" : 29353,
+	"scanAndOrder" : false,
+	"indexOnly" : false,
+	"nYields" : 229,
+	"nChunkSkips" : 0,
+	"millis" : 31,
+	"indexBounds" : {
+		"state" : [
+			[
+				{
+					"$minElement" : 1
+				},
+				{
+					"$maxElement" : 1
+				}
+			]
+		]
+	},
+	"server" : "B4L0106:27017",
+	"filterSet" : false
+}
+> 
+
+

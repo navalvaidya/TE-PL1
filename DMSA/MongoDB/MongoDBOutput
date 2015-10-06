@@ -1,0 +1,630 @@
+Creating And Inserting Into Post
+
+ db.post.insert({title:"Blog Post",description:"Blog Page",by:"naval",url:"blogpost.com/naval",tags:["mongo","database","nosql"],likes:200,comments:[{user:"varun",message:"good post",date:new Date('Aug 20,2015'),likes:4}]})
+> db.post.insert({title:"Blog Post",description:"Blog Page",by:"varun",url:"blogpost.com/varun",tags:["mongodb","database","nosql"],likes:100,comments:[{user:"varun",message:"nice post",date:new Date('Aug 20,2015'),likes:8}]})
+> db.post.insert({title:"Blog Post",description:"Blog Page",by:"Ankit",url:"blogpost.com/ankit",tags:["mysql","database","structured"],likes:350,comments:[{user:"kunal",message:"Excellent post",date:new Date('Aug 20,2015'),likes:8}]})
+> db.post.insert({title:"Blog Post",description:"Blog Page",by:"Kunal",url:"blogpost.com/kunal",tags:["mysql","datastructure","structured"],likes:221,comments:[{user:"abhinav",message:"good content",date:new Date('Aug 20,2015'),likes:21}]})
+
+
+
+Displaying All Post Information
+
+db.post.find().pretty()
+{
+	"_id" : ObjectId("55d5e03dccc8d4d72cc7e8bb"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "naval",
+	"url" : "blogpost.com/naval",
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql"
+	],
+	"likes" : 200,
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 4
+		}
+	]
+}
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "varun",
+	"url" : "blogpost.com/varun",
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"likes" : 100,
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	]
+}
+{
+	"_id" : ObjectId("55d5e0d5ccc8d4d72cc7e8bd"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "Ankit",
+	"url" : "blogpost.com/ankit",
+	"tags" : [
+		"mysql",
+		"database",
+		"structured"
+	],
+	"likes" : 350,
+	"comments" : [
+		{
+			"user" : "kunal",
+			"message" : "Excellent post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	]
+}
+{
+	"_id" : ObjectId("55d5e135ccc8d4d72cc7e8be"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "Kunal",
+	"url" : "blogpost.com/kunal",
+	"tags" : [
+		"mysql",
+		"datastructure",
+		"structured"
+	],
+	"likes" : 221,
+	"comments" : [
+		{
+			"user" : "abhinav",
+			"message" : "good content",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 21
+		}
+	]
+}
+> 
+
+Increment value of likes in one record($inc)
+> db.post.update({"by":"Ankit"},{$inc:{"likes":1}})
+
+ db.post.find({"by":"Ankit"}).pretty()
+{
+	"_id" : ObjectId("55d5e0d5ccc8d4d72cc7e8bd"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "Ankit",
+	"url" : "blogpost.com/ankit",
+	"tags" : [
+		"mysql",
+		"database",
+		"structured"
+	],
+	"likes" : 351,
+	"comments" : [
+		{
+			"user" : "kunal",
+			"message" : "Excellent post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	]
+}
+
+ Add one record if doesn’t exist else update($upsert)
+
+db.post.update({"by":"varun"},{$inc:{hits:1}},{upsert:true})
+> db.post.update({"by":"varun"},{$inc:{hits:1}},{upsert:true})
+> db.post.find().pretty()
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"by" : "varun",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 2,
+	"likes" : 100,
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/varun"
+}
+
+ set the new title 'New Mong oDB T utorial' of the documents whose title is 'Mong oDB Overview'.($set)
+
+> db.post.update({"by":"Ankit"},{$set:{hits:4}})
+> db.post.find().pretty()
+
+
+{
+	"_id" : ObjectId("55d5e0d5ccc8d4d72cc7e8bd"),
+	"by" : "Ankit",
+	"comments" : [
+		{
+			"user" : "kunal",
+			"message" : "Excellent post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 4,
+	"likes" : 351,
+	"tags" : [
+		"mysql",
+		"database",
+		"structured"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/ankit"
+}
+
+ Replace existing record with new record(update)
+
+db.post.update({"by":"Ankit"},{hits:4})
+> db.post.find().pretty()
+{ "_id" : ObjectId("55d5e0d5ccc8d4d72cc7e8bd"), "hits" : 4 }
+
+2. Use $gte,$gt,$lt operators and fire queries.
+
+db.post.find({likes:{$gt:200}}).pretty()
+{
+	"_id" : ObjectId("55d5e135ccc8d4d72cc7e8be"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "Kunal",
+	"url" : "blogpost.com/kunal",
+	"tags" : [
+		"mysql",
+		"datastructure",
+		"structured"
+	],
+	"likes" : 221,
+	"comments" : [
+		{
+			"user" : "abhinav",
+			"message" : "good content",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 21
+		}
+	]
+}
+
+> db.post.find({likes:{$gte:200}}).pretty()
+{
+	"_id" : ObjectId("55d5e135ccc8d4d72cc7e8be"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "Kunal",
+	"url" : "blogpost.com/kunal",
+	"tags" : [
+		"mysql",
+		"datastructure",
+		"structured"
+	],
+	"likes" : 221,
+	"comments" : [
+		{
+			"user" : "abhinav",
+			"message" : "good content",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 21
+		}
+	]
+}
+{
+	"_id" : ObjectId("55d5e03dccc8d4d72cc7e8bb"),
+	"by" : "naval",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 4
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 1,
+	"likes" : 200,
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/naval"
+}
+
+
+db.post.find({likes:{$lt:200}}).pretty()
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"by" : "varun",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 3,
+	"likes" : 100,
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/varun"
+}
+> 
+
+ Find records having tags ‘mongodb’.
+ db.post.find({"tags":"mongodb"}).pretty()
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"by" : "varun",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 3,
+	"likes" : 100,
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/varun"
+}
+
+ Find all records starting with title ‘M’.
+ db.post.find({title:{$regex:"M"}}).pretty()
+{
+	"_id" : ObjectId("55d5ef94ccc8d4d72cc7e8bf"),
+	"title" : "Mongo",
+	"description" : "Blog Page",
+	"by" : "Ankit",
+	"url" : "blogpost.com/naval",
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql"
+	],
+	"likes" : 202,
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 2
+		}
+	]
+}
+> 
+
+
+Find all records having Mongo in their title.
+db.post.find({title:{$regex:"Mongo"}}).pretty()
+{
+	"_id" : ObjectId("55d5ef94ccc8d4d72cc7e8bf"),
+	"title" : "Mongo",
+	"description" : "Blog Page",
+	"by" : "Ankit",
+	"url" : "blogpost.com/naval",
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql"
+	],
+	"likes" : 202,
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 2
+		}
+	]
+}
+> 
+Push some more tags ($push)
+db.post.update({by:"Ankit"},{$push:{tags:"mongoDB"}})
+> db.post.find().pretty()
+
+{
+	"_id" : ObjectId("55d5ef94ccc8d4d72cc7e8bf"),
+	"by" : "Ankit",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 2
+		}
+	],
+	"description" : "Blog Page",
+	"likes" : 202,
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql",
+		"mongoDB"
+	],
+	"title" : "Mongo",
+	"url" : "blogpost.com/naval"
+}
+> 
+
+Pop some comments($pop)
+ db.post.update({by:"Ankit"},{$pop:{tags:"mongoDB"}})
+> db.post.find().pretty()
+{
+	"_id" : ObjectId("55d5ef94ccc8d4d72cc7e8bf"),
+	"by" : "Ankit",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 2
+		}
+	],
+	"description" : "Blog Page",
+	"likes" : 202,
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql"
+	],
+	"title" : "Mongo",
+	"url" : "blogpost.com/naval"
+}
+>
+
+Remove all the documents whose title is 'Mong oDB Overview'
+db.post.remove({title:"Mongo"})
+ db.post.find()
+{ "_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"), "by" : "varun", "comments" : [ 	{ 	"user" : "varun", 	"message" : "nice post", 	"date" : ISODate("2015-08-19T18:30:00Z"), 	"likes" : 8 } ], "description" : "Blog Page", "hits" : 3, "likes" : 100, "tags" : [  "mongodb",  "database",  "nosql" ], "title" : "Blog Post", "url" : "blogpost.com/varun" }
+{ "_id" : ObjectId("55d5e0d5ccc8d4d72cc7e8bd"), "hits" : 4 }
+{ "_id" : ObjectId("55d5e135ccc8d4d72cc7e8be"), "title" : "Blog Post", "description" : "Blog Page", "by" : "Kunal", "url" : "blogpost.com/kunal", "tags" : [  "mysql",  "datastructure",  "structured" ], "likes" : 221, "comments" : [ 	{ 	"user" : "abhinav", 	"message" : "good content", 	"date" : ISODate("2015-08-19T18:30:00Z"), 	"likes" : 21 } ] }
+{ "_id" : ObjectId("55d5e03dccc8d4d72cc7e8bb"), "by" : "naval", "comments" : [ 	{ 	"user" : "varun", 	"message" : "good post", 	"date" : ISODate("2015-08-19T18:30:00Z"), 	"likes" : 4 } ], "description" : "Blog Page", "hits" : 1, "likes" : 200, "tags" : [  "mongo",  "database",  "nosql" ], "title" : "Blog Post", "url" : "blogpost.com/naval" }
+> 
+
+ Display only 2 documents while querying the document.
+
+ db.post.find().pretty().limit(2)
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"by" : "varun",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 3,
+	"likes" : 100,
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/varun"
+}
+{ "_id" : ObjectId("55d5e0d5ccc8d4d72cc7e8bd"), "hits" : 4 }
+> 
+
+
+
+
+ Display the documents sorted by title in descending order.
+ db.post.find().sort({by:-1}).pretty()
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"by" : "varun",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 3,
+	"likes" : 100,
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/varun"
+}
+{
+	"_id" : ObjectId("55d5e03dccc8d4d72cc7e8bb"),
+	"by" : "naval",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 4
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 1,
+	"likes" : 200,
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/naval"
+}
+{
+	"_id" : ObjectId("55d5e135ccc8d4d72cc7e8be"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "Kunal",
+	"url" : "blogpost.com/kunal",
+	"tags" : [
+		"mysql",
+		"datastructure",
+		"structured"
+	],
+	"likes" : 221,
+	"comments" : [
+		{
+			"user" : "abhinav",
+			"message" : "good content",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 21
+		}
+	]
+}
+{ "_id" : ObjectId("55d5e0d5ccc8d4d72cc7e8bd"), "hits" : 4 }
+
+
+ Find total count of records in your collection.
+> db.post.count()
+4
+
+ Display the title of the document while querying the document.
+ db.post.find({},{by:1,_id:0}).pretty()
+{ "by" : "varun" }
+{ }
+{ "by" : "Kunal" }
+{ "by" : "naval" }
+> 
+ 
+Locate all the documents that contain the tags “mongodb”,”nosql”.($all)
+db.post.find( { tags: { $all: [ "mongodb", "nosql" ] } } ).pretty()
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"by" : "varun",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 3,
+	"likes" : 100,
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/varun"
+}
+
+ All the documents where the number of tags is four.($size)
+db.post.find( { tags: { $size: 3} } ).pretty()
+{
+	"_id" : ObjectId("55d5e080ccc8d4d72cc7e8bc"),
+	"by" : "varun",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "nice post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 8
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 3,
+	"likes" : 100,
+	"tags" : [
+		"mongodb",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/varun"
+}
+{
+	"_id" : ObjectId("55d5e135ccc8d4d72cc7e8be"),
+	"title" : "Blog Post",
+	"description" : "Blog Page",
+	"by" : "Kunal",
+	"url" : "blogpost.com/kunal",
+	"tags" : [
+		"mysql",
+		"datastructure",
+		"structured"
+	],
+	"likes" : 221,
+	"comments" : [
+		{
+			"user" : "abhinav",
+			"message" : "good content",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 21
+		}
+	]
+}
+{
+	"_id" : ObjectId("55d5e03dccc8d4d72cc7e8bb"),
+	"by" : "naval",
+	"comments" : [
+		{
+			"user" : "varun",
+			"message" : "good post",
+			"date" : ISODate("2015-08-19T18:30:00Z"),
+			"likes" : 4
+		}
+	],
+	"description" : "Blog Page",
+	"hits" : 1,
+	"likes" : 200,
+	"tags" : [
+		"mongo",
+		"database",
+		"nosql"
+	],
+	"title" : "Blog Post",
+	"url" : "blogpost.com/naval"
+}
+> 
+
+
+
